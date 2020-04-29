@@ -1,0 +1,13 @@
+C:\Users\User\Documents\Ailén\UTN\DDS\TPs\juegoInteractivo\juegoInteractivo\obj\Debug\netcoreapp3.1\juegoInteractivo.csprojAssemblyReference.cache
+C:\Users\User\Documents\Ailén\UTN\DDS\TPs\juegoInteractivo\juegoInteractivo\obj\Debug\netcoreapp3.1\juegoInteractivo.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\Ailén\UTN\DDS\TPs\juegoInteractivo\juegoInteractivo\obj\Debug\netcoreapp3.1\juegoInteractivo.AssemblyInfoInputs.cache
+C:\Users\User\Documents\Ailén\UTN\DDS\TPs\juegoInteractivo\juegoInteractivo\obj\Debug\netcoreapp3.1\juegoInteractivo.AssemblyInfo.cs
+C:\Users\User\Documents\Ailén\UTN\DDS\TPs\juegoInteractivo\juegoInteractivo\bin\Debug\netcoreapp3.1\juegoInteractivo.exe
+C:\Users\User\Documents\Ailén\UTN\DDS\TPs\juegoInteractivo\juegoInteractivo\bin\Debug\netcoreapp3.1\juegoInteractivo.deps.json
+C:\Users\User\Documents\Ailén\UTN\DDS\TPs\juegoInteractivo\juegoInteractivo\bin\Debug\netcoreapp3.1\juegoInteractivo.runtimeconfig.json
+C:\Users\User\Documents\Ailén\UTN\DDS\TPs\juegoInteractivo\juegoInteractivo\bin\Debug\netcoreapp3.1\juegoInteractivo.runtimeconfig.dev.json
+C:\Users\User\Documents\Ailén\UTN\DDS\TPs\juegoInteractivo\juegoInteractivo\bin\Debug\netcoreapp3.1\juegoInteractivo.dll
+C:\Users\User\Documents\Ailén\UTN\DDS\TPs\juegoInteractivo\juegoInteractivo\bin\Debug\netcoreapp3.1\juegoInteractivo.pdb
+C:\Users\User\Documents\Ailén\UTN\DDS\TPs\juegoInteractivo\juegoInteractivo\obj\Debug\netcoreapp3.1\juegoInteractivo.dll
+C:\Users\User\Documents\Ailén\UTN\DDS\TPs\juegoInteractivo\juegoInteractivo\obj\Debug\netcoreapp3.1\juegoInteractivo.pdb
+C:\Users\User\Documents\Ailén\UTN\DDS\TPs\juegoInteractivo\juegoInteractivo\obj\Debug\netcoreapp3.1\juegoInteractivo.genruntimeconfig.cache
