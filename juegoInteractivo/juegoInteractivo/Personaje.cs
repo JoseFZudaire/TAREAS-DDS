@@ -5,36 +5,31 @@ using System.Text;
 
 namespace juegoInteractivo
 {
-     class Personaje 
-    {
-        public float altura;
-        //private string habilidades { get; set; }
-       // private List<String> habilidades;
-        private int inteligencia;
-        private string nombre;
-        private float peso; 
-        
-       public Personaje (float unaAltura, int unaInteligencia, string unNombre, float unPeso)
+    abstract class Personaje 
+    { 
+        protected string nombre { get; set; }
+        protected float peso { get; set; }
+        protected float altura { get; set; }
+        protected String[] habilidades { get; set; }
+        protected int inteligencia { get; set; }
+
+
+
+        public Personaje() { }
+        public Personaje (string nombre, float peso, float altura, int inteligencia, String[] habilidades)
         {
-            altura = unaAltura;
-           // habilidades.AddRange(unasHabilidades);
-            inteligencia = unaInteligencia;
-            nombre = unNombre;
-            peso = unPeso;
+           this.nombre = nombre;
+           this.peso = peso;
+           this.altura = altura;
+           this.inteligencia = inteligencia;
+           this.habilidades = habilidades;           
         }
 
         public void setNombre(string unNombre) { nombre = unNombre; }
         public string getNombre() { return nombre; }
 
-        public Personaje copiar()
-        {
-            Personaje unPersonaje = (Personaje) this.MemberwiseClone(); //Copio el personaje, me lo devuelve con los mismos atributos
-            //unPersonaje.habilidades = (String)habilidades.Clone();
-            //unPersonaje.nombre = (String)nombre.Clone();
-            return unPersonaje;
-        }
-
-        
+        public abstract Personaje copiar();
+       
 
     }
 }

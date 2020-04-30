@@ -6,14 +6,13 @@ namespace juegoInteractivo
 {
     class Villano : Personaje
     {
-        public Villano (float unaAltura, int unaInteligencia, string unNombre, float unPeso)
-        {
-            altura = unaAltura;
-            // habilidades.AddRange(unasHabilidades);
-            inteligencia = unaInteligencia;
-            nombre = unNombre;
-            peso = unPeso;
-        }
+        public Villano():base() { }
 
+        public Villano(string nombre, float peso, float altura, int inteligencia, string[] habilidades) : base(nombre, peso, altura, inteligencia, habilidades) { }
+
+        public override Personaje copiar()
+        {
+            return (Villano)this.MemberwiseClone();
+        }
     }
 }
