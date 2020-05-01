@@ -18,7 +18,7 @@ namespace juegoInteractivo
             sistema.addPersonaje(popote);
             Heroe superman = new Heroe("superman", 110, 190, 270, new string[] { "volar", "super fuerza" });
             sistema.addPersonaje(superman);
-            sesionActual = sistema.crearSesion(sistema.elegirPersonajes("popote,el oso maloso"));
+            sesionActual = sistema.crearSesion(new List<Personaje> { popote, maloso });
         }
     }
 }

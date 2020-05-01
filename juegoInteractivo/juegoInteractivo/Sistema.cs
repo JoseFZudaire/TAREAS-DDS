@@ -39,20 +39,6 @@ namespace juegoInteractivo
             return unaSesion;
         }
 
-        public List<Personaje> elegirPersonajes(string personajesElegidos)
-        {
-            List<Personaje> losPersonajes = new List<Personaje>();
-            string[] personajes = personajesElegidos.Split(",");
-            foreach (string element in personajes)
-            {
-                //busco dentro de los personajes creados los que tienen alguno de los nombres que pasé por parametro y los agrego a una lista de copias
-                losPersonajes.Add(personajesCreados.Find(p => p.getNombre() == element));
-                
-            }
-
-            return losPersonajes;
-        }
-
         public List<Personaje> copiarPersonajes(List<Personaje> personajes)
         {
             List<Personaje> copiasPersonajes = new List<Personaje>();
