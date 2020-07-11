@@ -6,7 +6,6 @@ namespace InteresesBancarios
 {
     class Intereses : Visitor
     {
-        private List<float> intereses;
 
         public double visit(CajaDeAhorro cajaAhorro)
         {
