@@ -12,9 +12,9 @@ namespace Biblioteca
         static void Main(string[] args)
         {
 
-            DB db = new DB();
+            /*DB db = new DB();
             db.Database.Initialize(true);
-
+            */
             /*DateTime fechaJKRowling = new Date(1965, 7, 31);
             Autor jkRowling = new Autor(fechaJKRowling, "Britanica", "J.K.Rowling");
 
@@ -46,9 +46,12 @@ namespace Biblioteca
                 // Si se fijan no dejan de ser listas asi que respetan todas las funciones de listas que
                 // comunmente usamos
 
-                var cantUsuarios = context.Autores.ToArray();
+                //var cantUsuarios = context.Autores.ToArray();
+                //DB db = new DB();
+                
+                /*var cantUsuarios = db.Autores.ToArray();
                 Console.WriteLine($"Existen {cantUsuarios.Length} usuario(s).");
-
+                */
                 // Consultemos la cantidad de usuarios creados
                 //var cantUsuarios = context.usuarios.ToArray();
                 //Console.WriteLine($"Existen {cantUsuarios.Length} usuario(s).");
