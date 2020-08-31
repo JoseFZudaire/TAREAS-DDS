@@ -9,13 +9,13 @@ namespace Biblioteca
 {
     class Prestamo
     {
-        private int cantDias;
-        private DateTime fechaInicio;
-        private int idPrestamo;
-        private int idLibro;
-        private int idLector;
-        private Lector lector;
-        private Libro libro;
+        public int cantDias { get; set; }
+        public DateTime fechaInicio { get; set; }
+        public int idPrestamo { get; set; }
+        public int idLibro { get; set; }
+        public int idLector { get; set; }
+        public Lector lector { get; set; }
+        public Libro libro { get; set; }
 
         public Libro getLibro() { return libro; }
 

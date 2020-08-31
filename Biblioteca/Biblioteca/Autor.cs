@@ -8,11 +8,11 @@ namespace Biblioteca
 {
     class Autor
     {
-        private DateTime fechaNac;
-        private String nacionalidad;
-        private String nombre;
-        private int idAutor;
-        private List <Libro> libros;
+        public DateTime fechaNac { get; set; }
+        public String nacionalidad { get; set; }
+        public String nombre { get; set; }
+        public int idAutor { get; set; }
+        public List <Libro> libros { get; set; }
 
         public void setAutor(DateTime nacimiento, String unaNacionalidad, String unNombre, int id)
         {

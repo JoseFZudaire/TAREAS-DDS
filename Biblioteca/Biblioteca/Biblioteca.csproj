@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autor.cs" />
+    <Compile Include="DB.cs" />
     <Compile Include="Lector.cs" />
     <Compile Include="Prestamo.cs" />
     <Compile Include="Libro.cs" />
