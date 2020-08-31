@@ -24,22 +24,35 @@ namespace Biblioteca
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
             // Definimos que use el schema biblioteca
             modelBuilder.HasDefaultSchema("biblioteca");
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Libro>().ToTable("StudentInfo");
-            modelBuilder.Entity<Student>().ToTable("StudentInfo");
-            modelBuilder.Entity<Student>().ToTable("StudentInfo");
-            modelBuilder.Entity<Student>().ToTable("StudentInfo");
+            modelBuilder.Entity<Libro>().ToTable("libro", "biblioteca");
+            modelBuilder.Entity<Prestamo>().ToTable("prestamo", "biblioteca");
+            modelBuilder.Entity<Lector>().ToTable("lector", "biblioteca");
+            modelBuilder.Entity<Autor>().ToTable("autor", "biblioteca");
+
+            modelBuilder.Entity<Libro>().HasKey(s => s.idLibro);
+            modelBuilder.Entity<Autor>().HasKey(s => s.idAutor);
+            modelBuilder.Entity<Lector>().HasKey(s => s.idLector);
+            modelBuilder.Entity<Prestamo>().HasKey(s => s.idPrestamo);
 
             modelBuilder.Entity<Prestamo>()
-                .HasRequired<Lector>(s=>s.idLibro)
+                .HasRequired<Lector>(l => l.lector)
+                .WithMany(l => l.prestamos)
+                .HasForeignKey(p => p.idLector);
 
-            modelBuilder.Entity<x>()
-                .HasRequired<Usuario>(s => s.creador)
-                .WithMany(g => g.posts)
-                .HasForeignKey<int>(s => s.creador_id);
+            modelBuilder.Entity<Prestamo>()
+                .HasRequired<Libro>(p => p.libro)
+                .WithMany(l => l.prestamos)
+                .HasForeignKey(p => p.idLibro);
+
+            modelBuilder.Entity<Libro>()
+                .HasRequired<Autor>(l => l.autor)
+                .WithMany(a => a.libros)
+                .HasForeignKey(p => p.idAutor);
 
         }
 

@@ -27,13 +27,11 @@ namespace Biblioteca
         public int idAutor { get; set; }
         public Estado estado { get; set; }
         public String nombre { get; set; }
-        public List<Prestamo> prestamos;
-        public Autor autor;
+        public List<Prestamo> prestamos { get; set; }
+        public Autor autor { get; set; }
 
-        public void setEstado(Estado unEstado) { estado = unEstado; }
 
-        public void setLibro(int id, int unAnio, String unaCategoria, String unaEditorial, int autorId, Estado unEstado, String unNombre, Autor unAutor) {
-            idLibro = id;
+        public Libro( int unAnio, String unaCategoria, String unaEditorial, int autorId, Estado unEstado, String unNombre, Autor unAutor) {
             anio = unAnio;
             categoria = unaCategoria;
             editorial = unaEditorial;

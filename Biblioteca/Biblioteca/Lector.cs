@@ -17,11 +17,11 @@ namespace Biblioteca
         public int diasDeMulta { get; set; }
         public List <Prestamo> prestamos { get; set; }
  
-        public void setLector(int id, String unNombre, int diasMulta)
+        public Lector(String nombre, int diasMulta)
         {
-            idLector = id;
-            nombre = unNombre;
-            idLector = id;
+            
+            this.nombre = nombre;
+            diasDeMulta = diasMulta;
         }
 
         public void aplicarMulta(Prestamo prestamo)

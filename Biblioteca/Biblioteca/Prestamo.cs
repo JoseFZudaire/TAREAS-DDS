@@ -17,13 +17,10 @@ namespace Biblioteca
         public Lector lector { get; set; }
         public Libro libro { get; set; }
 
-        public Libro getLibro() { return libro; }
-
-        public void setPrestamo(int dias, DateTime inicio, int prestamoId, int libroId, int lectorId, Lector unLector, Libro unLibro)
+        public Prestamo(int dias, DateTime inicio, int libroId, int lectorId, Lector unLector, Libro unLibro)
         {
             cantDias = dias;
             fechaInicio = inicio;
-            prestamoId = idPrestamo;
             idLibro = libroId;
             idLector = lectorId;
             lector = unLector;
