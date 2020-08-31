@@ -20,6 +20,10 @@ namespace Biblioteca
             // en este caso como no queremos que haga sus 'creaciones magicas' le decimos que nada.
             Database.SetInitializer<DB>(null);
 
+            //System.Data.Entity.Database.SetInitializer(new MyInitializer());
+
+            
+            
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

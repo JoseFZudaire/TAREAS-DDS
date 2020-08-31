@@ -27,7 +27,5 @@ namespace Biblioteca
             libro = unLibro;
         }
 
-        public int getCantDias() { return cantDias; }
-
     }
 }

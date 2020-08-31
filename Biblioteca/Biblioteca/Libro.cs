@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-enum Estado
+public enum Estado
 {
     EnBiblioteca = 0,
     Prestado = 1,

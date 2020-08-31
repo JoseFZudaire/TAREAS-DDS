@@ -9,13 +9,13 @@ namespace Biblioteca
     public class Autor
     {
         
-        public DateTime fechaNac { get; set; }
+        public int fechaNac { get; set; }
         public String nacionalidad { get; set; }
         public String nombre { get; set; }
         public int idAutor { get; set; }
         public List <Libro> libros { get; set; }
 
-        public Autor(DateTime nacimiento, String unaNacionalidad, String unNombre)
+        public Autor(int nacimiento, String unaNacionalidad, String unNombre)
         {
             fechaNac = nacimiento;
             nacionalidad = unaNacionalidad;
