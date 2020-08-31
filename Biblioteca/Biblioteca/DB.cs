@@ -24,6 +24,81 @@ namespace Biblioteca
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //Libro
+            modelBuilder.Entity<Libro>()
+                .Property(p => p.idLibro)
+                .HasColumnName("idLibro");
+
+            modelBuilder.Entity<Libro>()
+                .Property(p => p.anio)
+                .HasColumnName("anio");
+
+            modelBuilder.Entity<Libro>()
+                .Property(p => p.categoria)
+                .HasColumnName("categoria");
+
+            modelBuilder.Entity<Libro>()
+                .Property(p => p.editorial)
+                .HasColumnName("editorial");
+
+            modelBuilder.Entity<Libro>()
+                .Property(p => p.idAutor)
+                .HasColumnName("idAutor");
+
+            modelBuilder.Entity<Libro>()
+                .Property(p => p.estado)
+                .HasColumnName("idEstado");
+
+            //Autor
+            modelBuilder.Entity<Autor>()
+                .Property(p => p.fechaNac)
+                .HasColumnName("fechaNac");
+
+            modelBuilder.Entity<Autor>()
+                .Property(p => p.nacionalidad)
+                .HasColumnName("nacionalidad");
+
+            modelBuilder.Entity<Autor>()
+                .Property(p => p.nombre)
+                .HasColumnName("nombre");
+
+            modelBuilder.Entity<Autor>()
+                .Property(p => p.idAutor)
+                .HasColumnName("idAutor");
+
+            //Lector
+            modelBuilder.Entity<Lector>()
+                .Property(p => p.idLector)
+                .HasColumnName("idLector");
+
+            modelBuilder.Entity<Lector>()
+                .Property(p => p.nombre)
+                .HasColumnName("nombre");
+
+            modelBuilder.Entity<Lector>()
+                .Property(p => p.diasDeMulta)
+                .HasColumnName("diasDeMulta");
+
+            //Prestamo
+            modelBuilder.Entity<Prestamo>()
+                .Property(p => p.cantDias)
+                .HasColumnName("cantDias");
+
+            modelBuilder.Entity<Prestamo>()
+                .Property(p => p.fechaInicio)
+                .HasColumnName("fechaInicio");
+
+            modelBuilder.Entity<Prestamo>()
+                .Property(p => p.idPrestamo)
+                .HasColumnName("idPrestamo");
+
+            modelBuilder.Entity<Prestamo>()
+                .Property(p => p.idLibro)
+                .HasColumnName("idLibro");
+
+            modelBuilder.Entity<Prestamo>()
+                .Property(p => p.idLector)
+                .HasColumnName("idLector");
 
             // Definimos que use el schema biblioteca
             modelBuilder.HasDefaultSchema("biblioteca");
