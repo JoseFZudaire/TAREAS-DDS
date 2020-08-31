@@ -9,11 +9,14 @@ namespace Biblioteca
     class Lector
     {
 
-        private int idLector;
-        private String nombre;
-        private int diasDeMulta;
-        private List<Prestamo> prestamos;
 
+
+        public int idLector { get; set; }
+        public String nombre { get; set; }
+
+        public int diasDeMulta { get; set; }
+        public List <Prestamo> prestamos { get; set; }
+ 
         public void setLector(int id, String unNombre, int diasMulta)
         {
             idLector = id;

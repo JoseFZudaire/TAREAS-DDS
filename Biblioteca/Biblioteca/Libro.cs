@@ -19,15 +19,16 @@ namespace Biblioteca
 {
     class Libro
     {
-        private int idLibro;
-        private int anio;
-        private String categoria;
-        private String editorial;
-        private int idAutor;
-        private Estado estado;
-        private String nombre;
-        private List<Prestamo> prestamos;
-        private Autor autor;
+
+        public int idLibro { get; set; }
+        public int anio { get; set; }
+        public String categoria { get; set; }
+        public String editorial { get; set; }
+        public int idAutor { get; set; }
+        public Estado estado { get; set; }
+        public String nombre { get; set; }
+        public List<Prestamo> prestamos;
+        public Autor autor;
 
         public void setEstado(Estado unEstado) { estado = unEstado; }
 
