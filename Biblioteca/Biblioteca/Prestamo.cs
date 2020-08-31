@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteca
 {
-    class Prestamo
+    public class Prestamo
     {
         public int cantDias { get; set; }
         public DateTime fechaInicio { get; set; }

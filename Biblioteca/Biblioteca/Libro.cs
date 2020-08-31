@@ -17,7 +17,7 @@ enum Estado
 
 namespace Biblioteca
 {
-    class Libro
+    public class Libro
     {
 
         public int idLibro { get; set; }

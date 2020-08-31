@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteca
 {
-    class DB : DbContext
+    public class DB : DbContext
     {
         public DbSet<Autor> Autores { get; set; }
         public DbSet<Lector> Lectores { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteca
 {
-    class Autor
+    public class Autor
     {
         
         public DateTime fechaNac { get; set; }

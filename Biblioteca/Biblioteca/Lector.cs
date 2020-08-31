@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteca
 {
-    class Lector
+    public class Lector
     {
 
 
@@ -32,7 +32,7 @@ namespace Biblioteca
         public void devolverLibro(Prestamo prestamo)
         {
             prestamos.Remove(prestamo);
-            prestamo.getLibro().setEstado(Estado.EnBiblioteca);
+            prestamo.libro.estado(Estado.EnBiblioteca);
         }
 
         public void realizarPrestamo(Prestamo prestamo)
