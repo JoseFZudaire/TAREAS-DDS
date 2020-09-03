@@ -9,7 +9,7 @@ namespace Biblioteca2._0
     public class Autor
     {
         
-        public int fechaNac { get; set; }
+        public DateTime fechaNac { get; set; }
         public String nacionalidad { get; set; }
         public String nombre { get; set; }
         public int idAutor { get; set; }
@@ -19,7 +19,7 @@ namespace Biblioteca2._0
         {
 
         }
-        public Autor(int nacimiento, String unaNacionalidad, String unNombre)
+        public Autor(DateTime nacimiento, String unaNacionalidad, String unNombre)
         {
             fechaNac = nacimiento;
             nacionalidad = unaNacionalidad;

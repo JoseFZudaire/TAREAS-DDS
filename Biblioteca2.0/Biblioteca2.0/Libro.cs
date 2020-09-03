@@ -22,11 +22,11 @@ namespace Biblioteca2._0
 
         public int idLibro { get; set; }
         public int anio { get; set; }
-        public String categoria { get; set; }
-        public String editorial { get; set; }
+        public string categoria { get; set; }
+        public string editorial { get; set; }
         public int idAutor { get; set; }
         public Estado estado { get; set; }
-        public String nombre { get; set; }
+        public string nombre { get; set; }
         public List<Prestamo> prestamos { get; set; }
         public Autor autor { get; set; }
 
@@ -35,32 +35,18 @@ namespace Biblioteca2._0
 
         }
 
-        public Libro( int unAnio, String unaCategoria, String unaEditorial, int autorId, Estado unEstado, String unNombre, Autor unAutor) {
+        public Libro(string unNombre, Autor unAutor, int unAnio, string unaCategoria, string unaEditorial) {
             anio = unAnio;
             categoria = unaCategoria;
             editorial = unaEditorial;
-            idAutor = autorId;
-            estado = unEstado;
             nombre = unNombre;
             autor = unAutor;
         }
 
         public Boolean cumpleCondicionesPrestamo()
         {
-            switch (estado)
-            {
-                case Estado.EnBiblioteca:
-                    return true;
-                case Estado.EnReparacion:
-                    Console.WriteLine("Se encuentra en reparación.");
-                    return false;
-                case Estado.EnRetraso:
-                    Console.WriteLine("Se encuentra en retraso.");
-                    return false;
-                case Estado.Prestado:
-                    Console.WriteLine("Se encuentra prestado.");
-                    return false;
-            }
+            if (estado == Estado.EnBiblioteca)
+                return true;
             return false;
         }
 

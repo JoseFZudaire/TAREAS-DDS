@@ -10,22 +10,21 @@ namespace Biblioteca2._0
     {
         public int idLector { get; set; }
         public String nombre { get; set; }
-        public int diasDeMulta { get; set; }
+        public DateTime multadoHasta { get; set; }
         public List <Prestamo> prestamos { get; set; }
 
         public Lector()
         {
 
         }
-        public Lector(String nombre, int diasMulta)
+        public Lector(String nombre)
         {
             this.nombre = nombre;
-            diasDeMulta = diasMulta;
         }
 
         public void aplicarMulta(Prestamo prestamo)
         {
-            diasDeMulta = diasDeMulta + 2*(prestamo.cantDias - 30);
+            this.multadoHasta = DateTime.Now.AddDays(prestamo.calcularDiasMulta());
         }
 
         public void devolverLibro(Prestamo prestamo)
@@ -34,19 +33,9 @@ namespace Biblioteca2._0
             prestamo.libro.estado = Estado.EnBiblioteca;
         }
 
-        public void realizarPrestamo(Prestamo prestamo)
+        public bool aptoPrestamo()
         {
-            if(prestamos.Count() < 3 && diasDeMulta == 0) 
-            {
-                if (prestamo.libro.estado == Estado.EnBiblioteca)
-                {
-                    prestamos.Add(prestamo);
-                    prestamo.libro.estado = Estado.Prestado;
-                }
-                else { Console.WriteLine("No está disponible el libro para prestarse."); }
-
-            }
-            else { Console.WriteLine("No se pueden prestar libros a este lector.");  }
+            return !(multadoHasta != null && DateTime.Now < multadoHasta) && prestamos.Where(p=>p.lector == this).Count() < 3;
         }
 
     }

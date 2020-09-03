@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
 using System.Text;
 using Biblioteca2._0;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +24,7 @@ namespace Biblioteca2._0
 
             // Cargar connection strings directamente en el código es peligroso...
             // Solución: http://go.microsoft.com/fwlink/?LinkId=723263
-            optionsBuilder.UseMySQL("server=localhost;database=biblioteca;user=root;password=42057386;");
+            optionsBuilder.UseMySQL("server=localhost;database=biblioteca;user=root;password=UTNdds1234;");
 
 
         }
@@ -36,6 +38,10 @@ namespace Biblioteca2._0
             modelBuilder.Entity<Libro>()
                 .Property(p => p.idLibro)
                 .HasColumnName("idLibro");
+            
+            modelBuilder.Entity<Libro>()
+                .Property(p => p.nombre)
+                .HasColumnName("nombre");
 
             modelBuilder.Entity<Libro>()
                 .Property(p => p.anio)
@@ -84,8 +90,8 @@ namespace Biblioteca2._0
                 .HasColumnName("nombre");
 
             modelBuilder.Entity<Lector>()
-                .Property(p => p.diasDeMulta)
-                .HasColumnName("diasDeMulta");
+                .Property(p => p.multadoHasta)
+                .HasColumnName("multadoHasta");
 
             //Prestamo
             modelBuilder.Entity<Prestamo>()
@@ -107,6 +113,11 @@ namespace Biblioteca2._0
             modelBuilder.Entity<Prestamo>()
                 .Property(p => p.idLector)
                 .HasColumnName("idLector");
+
+            modelBuilder.Entity<Prestamo>()
+                .Property(p => p.prestamoActivo)
+                .HasColumnName("prestamoActivo");
+
 
             // Definimos que use el schema biblioteca
             modelBuilder.HasDefaultSchema("biblioteca");
@@ -137,9 +148,21 @@ namespace Biblioteca2._0
                 .WithMany(a => a.libros)
                 .HasForeignKey(p => p.idAutor);
 
-
-
         }
 
+        public Libro[] getLibrosDisponibles()
+        {
+            return Libros.Where(l => l.cumpleCondicionesPrestamo()).ToArray();
+        }
+
+        public Lector[] getLectoresDisponibles()
+        {
+            return Lectores.Where(l=>l.aptoPrestamo()).ToArray();
+        }
+
+        public Prestamo[] getPrestamosActivosDe(Lector lec)
+        {
+            return (Prestamos.Where(p => p.lector == lec && p.prestamoActivo).Include(s => s.libro)).ToArray();
+        }
     }
 }

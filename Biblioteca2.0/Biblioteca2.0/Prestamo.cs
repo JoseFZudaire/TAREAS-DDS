@@ -14,22 +14,20 @@ namespace Biblioteca2._0
         public int idPrestamo { get; set; }
         public int idLibro { get; set; }
         public int idLector { get; set; }
+        public bool prestamoActivo { get; set; }
         public Lector lector { get; set; }
         public Libro libro { get; set; }
 
+        
+
         public Prestamo()
         {
-
         }
-        public Prestamo(int dias, DateTime inicio, int libroId, int lectorId, Lector unLector, Libro unLibro)
+        
+
+        public double calcularDiasMulta()
         {
-            cantDias = dias;
-            fechaInicio = inicio;
-            idLibro = libroId;
-            idLector = lectorId;
-            lector = unLector;
-            libro = unLibro;
+            return (DateTime.Now - fechaInicio.AddDays(cantDias)).TotalDays*2;
         }
-
     }
 }
