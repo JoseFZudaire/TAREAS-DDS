@@ -11,7 +11,7 @@ namespace Biblioteca2._0
         public int idLector { get; set; }
         public String nombre { get; set; }
         public DateTime multadoHasta { get; set; }
-        public List <Prestamo> prestamos { get; set; }
+        public List<Prestamo> prestamos { get; set; }
 
         public Lector()
         {
@@ -27,16 +27,7 @@ namespace Biblioteca2._0
             this.multadoHasta = DateTime.Now.AddDays(prestamo.calcularDiasMulta());
         }
 
-        public void devolverLibro(Prestamo prestamo)
-        {
-            prestamos.Remove(prestamo);
-            prestamo.libro.estado = Estado.EnBiblioteca;
-        }
-
-        public bool aptoPrestamo()
-        {
-            return !(multadoHasta != null && DateTime.Now < multadoHasta) && prestamos.Where(p=>p.lector == this).Count() < 3;
-        }
+        
 
     }
 

@@ -2,6 +2,7 @@
 using Renci.SshNet;
 using System;
 using System.Linq;
+using System.Threading;
 
 namespace Biblioteca2._0
 {
@@ -12,9 +13,10 @@ namespace Biblioteca2._0
         {
             context = new DB();
             //crearEjemplo();
+            
             int ingreso;
 
-            Console.WriteLine("Ingrese una opcion\n0: salir,\n1: agregar un prestamo,\n2: devolver un libro,\n3: calcular multa");
+            Console.WriteLine("Ingrese una opcion\n0: salir,\n1: agregar un prestamo,\n2: devolver un libro,\n3: calcular multa de prestamo");
             ingreso = Convert.ToInt32(Console.ReadLine());
 
             while (ingreso != 0)
@@ -27,9 +29,10 @@ namespace Biblioteca2._0
                         break;
                     case 2:
                         devolverLibro();
+                        Console.WriteLine("Libro devuelto");
                         break;
                     case 3:
-                        //calcularMulta();
+                        calcularMulta();
                         break;
                     default:
                         Console.WriteLine("Ingreso invalido");
@@ -38,36 +41,37 @@ namespace Biblioteca2._0
                 Console.WriteLine("Ingrese una opcion\n0: salir,\n1: agregar un prestamo,\n2: devolver un libro,\n3: calcular multa");
                 ingreso = Convert.ToInt32(Console.ReadLine());
             }
+            
 
 
+        }
 
+
+        private static void calcularMulta() //Se fija si para un prestamo activo le cabe una multa al lector
+        {
+            Prestamo pres = seleccionarPrestamo(context.Prestamos.Where(p=>p.prestamoActivo).ToArray());
+            int multa = pres.calcularDiasMulta();
+            if (multa < 1)
+                Console.WriteLine("La devolucion se realizo a tiempo");
+            else
+                Console.WriteLine("La devolucion fue con retraso. Los dias de multa aplicados son: "+multa);
         }
 
         private static void devolverLibro()
         {
-            Lector lec = seleccionarLector();
-            Prestamo pres = seleccionarPrestamo(lec);
-        }
-
-        private static void agregarPrestamo()
-        {
-
-            Prestamo pres = new Prestamo();
-            pres.lector = seleccionarLector();
-            pres.libro = seleccionarLibro();
-            pres.libro.estado = Estado.Prestado;
-            Console.WriteLine("Ingrese la cantidad de dias del prestamo: ");
-            pres.cantDias = Convert.ToInt32(Console.ReadLine());
-            pres.fechaInicio = DateTime.Now;
-            pres.prestamoActivo = true;
-            context.Prestamos.Add(pres);
+            Lector lec = seleccionarLector(context.Lectores.ToArray());
+            Prestamo pres = seleccionarPrestamo(context.getPrestamosActivosDe(lec));
+            pres.prestamoActivo = false;
+            if((DateTime.Now - pres.fechaInicio).TotalDays > pres.cantDias)
+            {
+                lec.aplicarMulta(pres);
+            }
+            pres.libro.estado = Estado.EnBiblioteca;
             context.SaveChanges();
-
         }
 
-        private static Prestamo seleccionarPrestamo(Lector lec)
+        private static Prestamo seleccionarPrestamo(Prestamo[] prestamosActivos)
         {
-            Prestamo[] prestamosActivos = context.getPrestamosActivosDe(lec);
             for (int i = 0; i < prestamosActivos.Length; i++)
             {
                 Console.WriteLine(i + ": " + prestamosActivos[i].libro.nombre);
@@ -82,9 +86,25 @@ namespace Biblioteca2._0
             return prestamosActivos[seleccion];
         }
 
-        private static Lector seleccionarLector()
+
+        private static void agregarPrestamo()
         {
-            Lector[] lectores = context.getLectoresDisponibles();
+
+            Prestamo pres = new Prestamo();
+            pres.lector = seleccionarLector(context.getLectoresDisponibles());
+            pres.libro = seleccionarLibro();
+            pres.libro.estado = Estado.Prestado;
+            Console.WriteLine("Ingrese la cantidad de dias del prestamo: ");
+            pres.cantDias = Convert.ToInt32(Console.ReadLine());
+            pres.fechaInicio = DateTime.Now;
+            pres.prestamoActivo = true;
+            context.Prestamos.Add(pres);
+            context.SaveChanges();
+
+        }
+
+        private static Lector seleccionarLector(Lector [] lectores)
+        {
             for (int i = 0; i < lectores.Length; i++)
             {
                 Console.WriteLine(i + ": " + lectores[i].nombre);
@@ -98,6 +118,9 @@ namespace Biblioteca2._0
             }
             return lectores[seleccion];
         }
+
+       
+
         private static Libro seleccionarLibro()
         {
             Libro[] libros = context.getLibrosDisponibles();
@@ -119,20 +142,14 @@ namespace Biblioteca2._0
 
         private static void crearEjemplo()
         {
-            Autor autor1 = new Autor(new DateTime(1968, 2, 12), "Argentina", "Juan Perez");
-            Autor autor2 = new Autor(new DateTime(1894, 6, 26), "Reino Unido", "Aldous Huxley");
-            context.Add<Autor>(autor1);
-            context.SaveChanges();
-            Libro libro1 = new Libro("El misterio de los patos", autor1,2016, "Drama", "Salamandra");
-            Libro libro2 = new Libro("Un mundo feliz", autor2, 1932, "Ficcion distopica", "Debolsillo");
-            context.Add<Libro>(libro1);
-            context.Add<Libro>(libro2);
-            Lector lector1 = new Lector("Lucas Miller");
-            Lector lector2 = new Lector("Matias Soto");
-            context.Add<Lector>(lector1);
-            context.Add<Lector>(lector2);
-            context.SaveChanges();
 
+            Autor autor1 = new Autor(new DateTime(1908, 4, 5), "Estadounidense", "Edgar Alan Poe");
+            context.Add<Autor>(autor1);
+            Libro libro1 = new Libro("El sabueso de los Baskerville", autor1, 1941, "Policial", "Santillana");
+            context.Add<Libro>(libro1);
+            Lector lector1 = new Lector("Pipo Fuentes");
+            context.Add<Lector>(lector1);
+            context.SaveChanges();
 
         }
     }

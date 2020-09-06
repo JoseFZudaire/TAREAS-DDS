@@ -152,12 +152,12 @@ namespace Biblioteca2._0
 
         public Libro[] getLibrosDisponibles()
         {
-            return Libros.Where(l => l.cumpleCondicionesPrestamo()).ToArray();
+            return Libros.Where(l => l.estado == Estado.EnBiblioteca).ToArray();
         }
 
         public Lector[] getLectoresDisponibles()
         {
-            return Lectores.Where(l=>l.aptoPrestamo()).ToArray();
+            return Lectores.Where(l=> !(l.multadoHasta != null && DateTime.Now < l.multadoHasta) && l.prestamos.Count() < 3).ToArray();
         }
 
         public Prestamo[] getPrestamosActivosDe(Lector lec)

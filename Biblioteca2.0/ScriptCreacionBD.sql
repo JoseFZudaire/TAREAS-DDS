@@ -25,12 +25,12 @@ DROP TABLE IF EXISTS `autor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `autor` (
-  `fechaNac` int NOT NULL,
+  `fechaNac` datetime NOT NULL,
   `nacionalidad` varchar(50) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `idAutor` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idAutor`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `autor` (
 
 LOCK TABLES `autor` WRITE;
 /*!40000 ALTER TABLE `autor` DISABLE KEYS */;
-INSERT INTO `autor` VALUES (1930,'Argentino Papá','Eze Cohen',1);
+INSERT INTO `autor` VALUES ('1968-02-12 00:00:00','Argentina','Juan Perez',2),('1968-02-12 00:00:00','Argentina','Juan Perez',4),('1894-06-26 00:00:00','Reino Unido','Aldous Huxley',5),('1948-04-05 00:00:00','Uruguaya','Pepito Robles',6),('1908-04-05 00:00:00','Estadounidense','Edgar Alan Poe',7);
 /*!40000 ALTER TABLE `autor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,9 +53,9 @@ DROP TABLE IF EXISTS `lector`;
 CREATE TABLE `lector` (
   `idLector` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
-  `diasDeMulta` int NOT NULL,
+  `multadoHasta` datetime DEFAULT NULL,
   PRIMARY KEY (`idLector`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,6 +64,7 @@ CREATE TABLE `lector` (
 
 LOCK TABLES `lector` WRITE;
 /*!40000 ALTER TABLE `lector` DISABLE KEYS */;
+INSERT INTO `lector` VALUES (3,'Lucas Miller','0001-01-01 00:00:00'),(4,'Matias Soto','0001-01-01 00:00:00'),(5,'Nicolas Fernandez','0001-01-01 00:00:00'),(6,'Juan Cases','0001-01-01 00:00:00'),(7,'Pipo Fuentes','0001-01-01 00:00:00');
 /*!40000 ALTER TABLE `lector` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,15 +77,16 @@ DROP TABLE IF EXISTS `libro`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `libro` (
   `idLibro` int NOT NULL AUTO_INCREMENT,
-  `anio` year NOT NULL,
+  `anio` int NOT NULL,
   `categoria` varchar(50) NOT NULL,
   `editorial` varchar(50) NOT NULL,
   `idAutor` int NOT NULL,
   `idEstado` int NOT NULL,
+  `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`idLibro`),
   KEY `FK_autor_idx` (`idAutor`),
   CONSTRAINT `FK_autor` FOREIGN KEY (`idAutor`) REFERENCES `autor` (`idAutor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,6 +95,7 @@ CREATE TABLE `libro` (
 
 LOCK TABLES `libro` WRITE;
 /*!40000 ALTER TABLE `libro` DISABLE KEYS */;
+INSERT INTO `libro` VALUES (1,2016,'Drama','Salamandra',4,0,'El misterio de los patos'),(2,1932,'Ficcion distopica','Debolsillo',5,1,'Un mundo feliz'),(3,2003,'Infantil','Santillana',6,0,'Tierra de osos'),(4,1941,'Policial','Santillana',7,0,'El sabueso de los Baskerville');
 /*!40000 ALTER TABLE `libro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,16 +108,17 @@ DROP TABLE IF EXISTS `prestamo`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prestamo` (
   `cantDias` int NOT NULL,
-  `fechaInicio` date NOT NULL,
+  `fechaInicio` datetime NOT NULL,
   `idPrestamo` int NOT NULL AUTO_INCREMENT,
   `idLibro` int NOT NULL,
   `idLector` int NOT NULL,
+  `prestamoActivo` tinyint(1) NOT NULL,
   PRIMARY KEY (`idPrestamo`),
   KEY `FK_lector_idx` (`idLector`),
   KEY `FK_libro_idx` (`idLibro`),
   CONSTRAINT `FK_lector` FOREIGN KEY (`idLector`) REFERENCES `lector` (`idLector`),
   CONSTRAINT `FK_libro` FOREIGN KEY (`idLibro`) REFERENCES `libro` (`idLibro`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,6 +127,7 @@ CREATE TABLE `prestamo` (
 
 LOCK TABLES `prestamo` WRITE;
 /*!40000 ALTER TABLE `prestamo` DISABLE KEYS */;
+INSERT INTO `prestamo` VALUES (15,'2020-09-05 17:59:51',1,2,3,1),(10,'2020-09-05 20:16:50',2,1,4,0);
 /*!40000 ALTER TABLE `prestamo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -135,4 +140,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-01 17:25:29
+-- Dump completed on 2020-09-05 23:44:28

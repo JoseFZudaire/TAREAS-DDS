@@ -43,12 +43,5 @@ namespace Biblioteca2._0
             autor = unAutor;
         }
 
-        public Boolean cumpleCondicionesPrestamo()
-        {
-            if (estado == Estado.EnBiblioteca)
-                return true;
-            return false;
-        }
-
     }
 }

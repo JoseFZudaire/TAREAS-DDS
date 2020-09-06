@@ -25,9 +25,19 @@ namespace Biblioteca2._0
         }
         
 
-        public double calcularDiasMulta()
+        public int calcularDiasMulta()
         {
-            return (DateTime.Now - fechaInicio.AddDays(cantDias)).TotalDays*2;
+            return (int)(DateTime.Now - fechaInicio.AddDays(cantDias)).TotalDays*2;//me fijo cuantos dias pasaron desde el dia que lo 
+                                                                              //deberia haber devuelto y lo multiplico por 2
+        }
+        
+        public void chequearDevolucion(Prestamo pres)
+        {
+
+            if((DateTime.Now - fechaInicio).TotalDays > cantDias)
+            {
+                 calcularDiasMulta();
+            }
         }
     }
 }
