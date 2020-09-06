@@ -11,10 +11,10 @@ namespace Biblioteca
 
         static void Main(string[] args)
         {
-
-            DB db = new DB();
+            
+            /*DB db = new DB();
             db.Database.Initialize(true);
-
+            */
             /*DateTime fechaJKRowling = new Date(1965, 7, 31);
             Autor jkRowling = new Autor(fechaJKRowling, "Britanica", "J.K.Rowling");
 
@@ -39,20 +39,25 @@ namespace Biblioteca
 
             // Construimos un objeto DB para poder realizar las consultas
             // Su ciclo de vida es hasta que finalize el using
+            
             using (var context = new DB())
             {
-
+                
                 // Podemos consultar por usuarios y posts segun lo definido en la clase DB nuestra
                 // Si se fijan no dejan de ser listas asi que respetan todas las funciones de listas que
                 // comunmente usamos
 
-                var cantUsuarios = context.Autores.ToArray();
-                Console.WriteLine($"Existen {cantUsuarios.Length} usuario(s).");
+                var cantAutores = context.autores.ToArray();
+                //  DB db = new DB();
+              
+                // var cantUsuarios = db.Autores.ToArray();
+                Console.WriteLine($"Existen {cantAutores.Length} usuario(s).");
 
                 // Consultemos la cantidad de usuarios creados
                 //var cantUsuarios = context.usuarios.ToArray();
                 //Console.WriteLine($"Existen {cantUsuarios.Length} usuario(s).");
-
+                Autor jkRowling = new Autor(1998, "Britanica", "J.K.Rowling");
+                Console.WriteLine(jkRowling.nombre);
                 // Ahora creemos un usuario
                 // Fijense que al definir el ID como autoincremental en la DB, no hace falta setearle alguno.
 
@@ -60,8 +65,9 @@ namespace Biblioteca
                 //Autor jkRowling = new Autor(fechaJKRowling, "Britanica", "J.K.Rowling");
 
                 //Autor usuario = new Autor(1965, "Britanica", "J.K.Rowling");
-                //context.Autores.Add(usuario);
-                //context.SaveChanges();
+                context.autores.Add(jkRowling);
+                context.SaveChanges();
+                Console.WriteLine($"Autor {jkRowling.nombre} creado");
 
                 // Lo agrego a la lista de usuarios
                 /* context.usuarios.Add(usuario);
