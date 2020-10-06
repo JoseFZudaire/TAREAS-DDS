@@ -18,13 +18,15 @@ namespace Biblioteca2._0
         public DbSet<Libro> Libros { get; set; }
         public DbSet<Prestamo> Prestamos { get; set; }
 
+        public DbSet<Persona> Persona { get; set; }
+
         // Setea driver y connection string a usar
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
             // Cargar connection strings directamente en el código es peligroso...
             // Solución: http://go.microsoft.com/fwlink/?LinkId=723263
-            optionsBuilder.UseMySQL("server=localhost;database=biblioteca;user=root;password=UTNdds1234;");
+            optionsBuilder.UseMySQL("server=localhost;database=biblioteca;user=root;password=austriagermany1945;");
 
 
         }
@@ -119,6 +121,11 @@ namespace Biblioteca2._0
                 .HasColumnName("prestamoActivo");
 
 
+            //Persona
+            modelBuilder.Entity<Persona>()
+                .Autor.Property(p => p.idPersona)
+                .HasColumnName("idpersona");
+
             // Definimos que use el schema biblioteca
             modelBuilder.HasDefaultSchema("biblioteca");
             base.OnModelCreating(modelBuilder);
@@ -126,12 +133,16 @@ namespace Biblioteca2._0
             modelBuilder.Entity<Libro>().ToTable("libro", "biblioteca");
             modelBuilder.Entity<Prestamo>().ToTable("prestamo", "biblioteca");
             modelBuilder.Entity<Lector>().ToTable("lector", "biblioteca");
-            modelBuilder.Entity<Autor>().ToTable("autor", "biblioteca");
+            //modelBuilder.Entity<Autor>().ToTable("autor", "biblioteca");
+            modelBuilder.Entity<Persona>().ToTable("persona", "biblioteca");
 
             modelBuilder.Entity<Libro>().HasKey(s => s.idLibro);
-            modelBuilder.Entity<Autor>().HasKey(s => s.idAutor);
+            //modelBuilder.Entity<Autor>().HasKey(s => s.idAutor);
+            modelBuilder.Entity<Persona>().HasKey(s => s.idPersona);
             modelBuilder.Entity<Lector>().HasKey(s => s.idLector);
             modelBuilder.Entity<Prestamo>().HasKey(s => s.idPrestamo);
+
+            
 
             modelBuilder.Entity<Prestamo>()
                 .HasOne<Lector>(l => l.lector)
