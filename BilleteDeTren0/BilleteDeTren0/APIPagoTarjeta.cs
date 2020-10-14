@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace BilleteDeTren0
 {
-    class Pasajero
+    class APIPagoTarjeta
     {
-        private int apellido;
-        private string DNI;
-        private bool esFumador;
-        private string nombre;
+        public void realizarPago(string tipoPago) { }
     }
 }

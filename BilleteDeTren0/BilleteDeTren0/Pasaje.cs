@@ -8,5 +8,9 @@ namespace BilleteDeTren0
 {
     class Pasaje
     {
+        private Pasajero pasajero;
+        private Plaza plaza;
+        private float valor;
+        private Viaje viaje;
     }
 }
