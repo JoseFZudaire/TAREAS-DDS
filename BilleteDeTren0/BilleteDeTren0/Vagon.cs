@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace BilleteDeTren0
 {
-    class Vagon
+    abstract class Vagon
     {
+        public Plaza[] plazas = new Plaza[60];
+        bool vagonFumador;
+
+        public abstract float getPrecio();
+
     }
 }

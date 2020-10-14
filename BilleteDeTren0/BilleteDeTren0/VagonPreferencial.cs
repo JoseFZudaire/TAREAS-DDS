@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace BilleteDeTren0
 {
-    class VagonPreferencial
+    class VagonPreferencial : Vagon
     {
+        public override float getPrecio()
+        {
+            return 100;
+        }
+
     }
 }

@@ -8,5 +8,17 @@ namespace BilleteDeTren0
 {
     class Plaza
     {
+        public bool esPasillo;
+        public int nroAsiento;
+        public bool plazaVendida;
+
+        public void reservar()
+        {
+            if (!plazaVendida)
+            {
+                plazaVendida = true;
+            }
+        }
+
     }
 }
