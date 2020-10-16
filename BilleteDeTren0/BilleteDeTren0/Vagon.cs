@@ -9,7 +9,8 @@ namespace BilleteDeTren0
     abstract class Vagon
     {
         public Plaza[] plazas = new Plaza[60];
-        bool vagonFumador;
+
+        public bool vagonFumador;
 
         public abstract float getPrecio();
 

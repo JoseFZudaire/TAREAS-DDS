@@ -13,5 +13,18 @@ namespace BilleteDeTren0
         private string origen;
         private DateTime salida;
         private Tren tren;
+
+        public Tren getTren() { return tren; }
+
+        public Viaje (string unDestino, DateTime unaLlegada, string unOrigen, DateTime unaSalida, Tren unTren)
+        {
+            destino = unDestino;
+            llegada = unaLlegada;
+            origen = unOrigen;
+            salida = unaSalida;
+            tren = unTren;
+        }
+
+        public string getDestino() { return destino; }
     }
 }

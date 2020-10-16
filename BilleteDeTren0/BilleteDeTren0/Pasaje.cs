@@ -12,5 +12,14 @@ namespace BilleteDeTren0
         private Plaza plaza;
         private float valor;
         private Viaje viaje;
+
+        public Pasaje (Pasajero unPasajero, Plaza unaPlaza, float unValor, Viaje unViaje)
+        {
+            pasajero = unPasajero;
+            plaza = unaPlaza;
+            valor = unValor;
+            viaje = unViaje;
+        }
+
     }
 }
