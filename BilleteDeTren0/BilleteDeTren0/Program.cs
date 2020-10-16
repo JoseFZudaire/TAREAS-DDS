@@ -27,7 +27,6 @@ namespace BilleteDeTren0
 
             unControlador.comprarPasajes(false, unViaje, pasajeros);
 
-            Console.WriteLine("Todo OK");
             foreach (Viaje viaje in unControlador.getViajes()) {
                 Console.WriteLine(viaje.getDestino());
             }

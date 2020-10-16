@@ -26,5 +26,7 @@ namespace BilleteDeTren0
         }
 
         public string getDestino() { return destino; }
+
+        public DateTime getSalida() { return salida; }
     }
 }
